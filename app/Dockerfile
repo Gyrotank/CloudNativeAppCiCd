@@ -1,6 +1,6 @@
 FROM gradle:7.2.0-jdk17 AS builder
 WORKDIR /app
-RUN gradle bootJar
+RUN ./gradlew bootJar
 
 FROM amazoncorretto:17.0.7-alpine
 WORKDIR /app
