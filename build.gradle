@@ -50,3 +50,8 @@ jar {
         )
     }
 }
+
+bootJar {
+    archiveFileName = 'cloudnativeapp-cicd'
+    archiveVersion = '1.0-SNAPSHOT'
+}
