@@ -5,4 +5,4 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def health_check():
-    return "Health check passed - v2"
+    return "Health check passed - v3"
