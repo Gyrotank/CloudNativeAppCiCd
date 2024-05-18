@@ -30,5 +30,5 @@ def upload_image():
             bucket_name,
             new_filename
         )
-        file_url = f"https://{bucket_name}.s3.amazonaws.com/{filename}"
+        file_url = f"https://{bucket_name}.s3.amazonaws.com/{new_filename}"
         return jsonify({"message": "File uploaded successfully", "url": file_url}), 200
