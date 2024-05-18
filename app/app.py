@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
-import boto3
+import boto3, uuid
 import config
 
 app = Flask(__name__)
@@ -21,13 +21,14 @@ def upload_image():
         return jsonify({"error": "No selected file"}), 400
 
     if file:
-        filename = secure_filename(file.filename)
+        original_filename = secure_filename(file.filename)
+        filename, file_extension = original_filename.rsplit('.', 1)
+        new_filename = f"{filename}_{uuid.uuid4()}.{file_extension}"
         bucket_name = config.Config.S3_BUCKET_NAME
         s3_client.upload_fileobj(
             file,
             bucket_name,
-            filename,
-            ExtraArgs={"ACL": "public-read"}
+            new_filename
         )
         file_url = f"https://{bucket_name}.s3.amazonaws.com/{filename}"
         return jsonify({"message": "File uploaded successfully", "url": file_url}), 200
