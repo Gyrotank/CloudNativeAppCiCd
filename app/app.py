@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
-import os, boto3
+import boto3
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ s3_client = boto3.client('s3')
 
 @app.route("/", methods=["GET"])
 def health_check():
-    return "Health check passed - v3"
+    return "Health check passed - v4"
 
 @app.route("/image", methods=["POST"])
 def upload_image():
