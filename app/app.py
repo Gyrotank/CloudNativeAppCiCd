@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 import boto3
+import config
 
 app = Flask(__name__)
 
@@ -21,7 +22,7 @@ def upload_image():
 
     if file:
         filename = secure_filename(file.filename)
-        bucket_name = app.config['S3_BUCKET_NAME']
+        bucket_name = config.Config.S3_BUCKET_NAME
         s3_client.upload_fileobj(
             file,
             bucket_name,
