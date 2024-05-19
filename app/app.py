@@ -1,15 +1,16 @@
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
-import boto3, uuid
-import config
+import boto3, uuid, config
 
 app = Flask(__name__)
 
 s3_client = boto3.client('s3')
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table(config.Config.DYNAMODB_TABLE_NAME)
 
 @app.route("/", methods=["GET"])
 def health_check():
-    return "Health check passed - v4"
+    return "Health check passed - v5"
 
 @app.route("/image", methods=["POST"])
 def upload_image():
@@ -32,3 +33,14 @@ def upload_image():
         )
         file_url = f"https://{bucket_name}.s3.amazonaws.com/{new_filename}"
         return jsonify({"message": "File uploaded successfully", "url": file_url}), 200
+
+@app.route("/image/<label>", methods=["GET"])
+def get_images_by_label(label):
+    try:
+        response = table.query(
+            KeyConditionExpression=boto3.dynamodb.conditions.Key('LabelValue').eq(label)
+        )
+        items = response.get('Items', [])
+        return jsonify(items), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
