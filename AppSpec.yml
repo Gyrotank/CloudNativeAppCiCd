@@ -1,0 +1,9 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:eu-west-1:381492307166:task-definition/CloudNativeAppCiCdBG_Task_Definition_Family:1"
+        LoadBalancerInfo:
+          ContainerName: "cloudnativeapp-cicd"
+          ContainerPort: 8080
