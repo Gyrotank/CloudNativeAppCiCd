@@ -2,7 +2,7 @@
   "family": "CloudNativeAppCiCdBG_Task_Definition_Family",
   "containerDefinitions": [
     {
-      "name": "ronantest1",
+      "name": "cloudnativeapp-cicd",
       "image": "<IMAGE1_NAME>"
     }
   ]
