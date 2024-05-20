@@ -31,5 +31,15 @@
     }
   ],
   "cpu": "1024",
-  "memory": "3072"
+  "memory": "3072",
+  "taskRoleArn": "arn:aws:iam::381492307166:role/ECS_Tasks_S3_DynamoDB_Full_Access",
+  "executionRoleArn": "arn:aws:iam::381492307166:role/ECS_Task_AWS_App_Runner_And_CloudWatch_Full_Access",
+  "networkMode": "awsvpc",
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ]
 }
