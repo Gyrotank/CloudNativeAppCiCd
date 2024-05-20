@@ -3,7 +3,31 @@
   "containerDefinitions": [
     {
       "name": "cloudnativeapp-cicd",
-      "image": "<IMAGE1_NAME>"
+      "image": "<IMAGE1_NAME>",
+      "portMappings": [
+        {
+          "name": "8080",
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        {
+          "name": "AWS_DEFAULT_REGION",
+          "value": "eu-west-1"
+        },
+        {
+          "name": "S3_BUCKET_NAME",
+          "value": "cloudnativeapp1glom"
+        },
+        {
+          "name": "DYNAMODB_TABLE_NAME",
+          "value": "CloudNativeApp1Table"
+        }
+      ]
     }
   ],
   "cpu": "1024",
