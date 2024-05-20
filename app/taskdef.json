@@ -5,5 +5,7 @@
       "name": "cloudnativeapp-cicd",
       "image": "<IMAGE1_NAME>"
     }
-  ]
+  ],
+  "cpu": "1024",
+  "memory": "3072"
 }
