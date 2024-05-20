@@ -1,4 +1,5 @@
 {
+  "family": "CloudNativeAppCiCdBG_Task_Definition_Family",
   "containerDefinitions": [
     {
       "name": "ronantest1",
